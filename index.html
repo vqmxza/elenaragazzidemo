@@ -3,59 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elena Ragazzi | Photography & Visual Arts</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <title>Elena Ragazzi | Photography</title>
+    <style>
+        /* CSS: IL DESIGN DEL SITO */
+        :root {
+            --bg: #0e0e0e;
+            --text: #f4f4f4;
+            --accent: #a5a5a5;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigazione */
+        nav {
+            padding: 30px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            background: rgba(14, 14, 14, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo { font-weight: 300; letter-spacing: 4px; text-transform: uppercase; }
+
+        /* Hero Section */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 10%;
+            background: linear-gradient(to right, rgba(0,0,0,0.8), transparent);
+        }
+
+        header h1 {
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 200;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-top: 20px;
+            letter-spacing: 2px;
+        }
+
+        /* Griglia Portfolio */
+        .portfolio {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .item {
+            height: 500px;
+            background: #1a1a1a;
+            display: flex;
+            align-items: flex-end;
+            padding: 30px;
+            transition: 0.5s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #222;
+        }
+
+        .item:hover { border-color: #555; }
+
+        .item h3 { font-weight: 300; z-index: 2; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 2px; }
+
+        /* Sezione Bio & Collaborazioni */
+        .about {
+            padding: 100px 10%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+        }
+
+        .about h2 { font-size: 2.5rem; font-weight: 200; margin-bottom: 30px; }
+
+        .collab-list { list-style: none; margin-top: 40px; }
+        .collab-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            color: var(--accent);
+        }
+
+        footer {
+            padding: 50px 10%;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #555;
+            border-top: 1px solid #222;
+        }
+
+        @media (max-width: 768px) {
+            .about { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo">ELENA RAGAZZI</div>
-        <ul class="nav-links">
-            <li><a href="#gallery">Portfolio</a></li>
-            <li><a href="#about">Bio</a></li>
-            <li><a href="#contact">Contatti</a></li>
-        </ul>
+        <div class="logo">Elena Ragazzi</div>
+        <div class="contact-link">2001 / Ferrara</div>
     </nav>
 
-    <header class="hero">
-        <div class="hero-content">
-            <h1>Catturare l'impermanenza.</h1>
-            <p>Fotografia editoriale, di scena e direzione creativa.</p>
-        </div>
+    <header>
+        <h1>Visione <br> Cinematografica</h1>
+        <p>Fotografa professionista dal 2018. Basata a Ferrara.</p>
     </header>
 
-    <section id="gallery" class="gallery">
-        <div class="grid-item large" style="background-image: url('https://via.placeholder.com/800x1000')"></div>
-        <div class="grid-item" style="background-image: url('https://via.placeholder.com/600x400')"></div>
-        <div class="grid-item" style="background-image: url('https://via.placeholder.com/600x400')"></div>
+    <section class="portfolio">
+        <div class="item"><h3>Photofestival Riaperture</h3></div>
+        <div class="item"><h3>Teatro Nucleo</h3></div>
+        <div class="item"><h3>Filo Magazine</h3></div>
+        <div class="item"><h3>Editorial Fashion</h3></div>
     </section>
 
-    <section id="about" class="about">
-        <div class="container">
-            <h2>Elena Ragazzi <small>(b. 2001)</small></h2>
-            <p class="bio-text">
-                Nata a Ferrara, intreccio la regia cinematografica con la fotografia per creare narrazioni visive sospese nel tempo. Dal 2018 collaboro con realtà editoriali e teatrali.
-            </p>
-            
-            <div class="experience">
-                <h3>Collaborazioni Selezionate</h3>
-                <ul>
-                    <li>Photofestival Riaperture</li>
-                    <li>Teatro Nucleo (Scene Urbane)</li>
-                    <li>Filo Magazine</li>
-                    <li>Teatro Off</li>
-                    <li>Brand: Rinascimento, Scout</li>
-                </ul>
-            </div>
+    <section class="about">
+        <div>
+            <h2>L'approccio</h2>
+            <p>Con un background che spazia dalla grafica alla regia, ogni scatto è concepito come un fotogramma di un film. Dal 2024 opero ufficialmente con partita IVA, portando la mia visione artistica nel mondo professionale.</p>
+        </div>
+        <div>
+            <h2>Esperienze</h2>
+            <ul class="collab-list">
+                <li><span>Teatro Off</span> <span>2024</span></li>
+                <li><span>Brand Rinascimento</span> <span>Fashion</span></li>
+                <li><span>Filo Magazine</span> <span>Press</span></li>
+                <li><span>Scout</span> <span>Campaign</span></li>
+                <li><span>Assistant to Max Salani</span> <span>Mentor</span></li>
+            </ul>
         </div>
     </section>
 
-    <footer id="contact">
-        <p>© 2026 Elena Ragazzi — P.IVA 2024</p>
-        <a href="mailto:info@elenaragazzi.it">Invia una mail</a>
+    <footer>
+        <p>&copy; 2026 Elena Ragazzi — Fotografa — P.IVA 2024</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // JS: PICCOLO EFFETTO DI APPARIZIONE
+        window.addEventListener('scroll', () => {
+            const items = document.querySelectorAll('.item');
+            items.forEach(item => {
+                const speed = 0.1;
+                const rect = item.getBoundingClientRect();
+                if(rect.top < window.innerHeight) {
+                    item.style.opacity = 1;
+                }
+            });
+        });
+    </script>
 </body>
 </html>
