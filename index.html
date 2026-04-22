@@ -11,8 +11,9 @@
         :root {
             --bg: #0a0a0a;
             --text: #ffffff;
-            --accent: #c5a47e; /* Oro spento/Sabbia */
+            --accent: #c5a47e; 
             --gray: #2a2a2a;
+            --dark-gray: #141414;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -107,7 +108,6 @@
 
         .img-box:hover span { opacity: 1; }
 
-        /* Layout Variabile (Masonry-like) */
         .i1 { grid-column: span 8; height: 600px; }
         .i2 { grid-column: span 4; height: 400px; }
         .i3 { grid-column: span 4; height: 500px; margin-top: -200px; }
@@ -134,11 +134,58 @@
         .about-text h2 { font-size: 3.5rem; margin-bottom: 20px; line-height: 1.1; }
         .about-text p { margin-bottom: 30px; font-weight: 300; font-size: 1.1rem; color: #ccc; }
 
-        /* --- COLLABS TABLE --- */
         .collabs { width: 100%; border-collapse: collapse; margin-top: 40px; }
         .collabs td { padding: 15px 0; border-bottom: 1px solid var(--gray); font-size: 0.9rem; }
         .collabs tr:hover td { color: var(--accent); }
         .collabs .year { text-align: right; font-style: italic; opacity: 0.5; }
+
+        /* --- NEW: REVIEWS SECTION (STILE EDITORIALE) --- */
+        .reviews-section {
+            padding: 120px 6%;
+            background-color: var(--dark-gray);
+        }
+
+        .reviews-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .reviews-header h2 { font-size: 3rem; margin-bottom: 10px; }
+        .reviews-header p { text-transform: uppercase; letter-spacing: 4px; font-size: 0.8rem; color: var(--accent); }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            align-items: start;
+        }
+
+        .review-card {
+            background: #0a0a0a;
+            padding: 40px;
+            border: 1px solid #1a1a1a;
+            transition: 0.4s;
+            position: relative;
+        }
+        
+        .review-card:hover { border-color: var(--accent); }
+
+        .review-text {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            color: #e0e0e0;
+        }
+
+        .review-author {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .author-name { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 400; }
+        .author-title { font-size: 0.7rem; color: var(--accent); margin-top: 5px; text-transform: uppercase; }
 
         /* --- FOOTER --- */
         footer {
@@ -162,10 +209,25 @@
 
         .contact-btn:hover { background: var(--accent); color: var(--bg); }
 
+        /* --- ANIMAZIONI CSS --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            filter: blur(5px);
+            transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+
         @media (max-width: 900px) {
             .portfolio { display: block; }
             .img-box { margin-bottom: 20px; height: 400px !important; width: 100%; }
             .about { grid-template-columns: 1fr; }
+            .i3 { margin-top: 0; }
         }
     </style>
 </head>
@@ -176,6 +238,7 @@
         <div class="nav-links">
             <a href="#work">Lavori</a>
             <a href="#about">Bio</a>
+            <a href="#reviews">Critica</a>
             <a href="#contact">Contatti</a>
         </div>
     </nav>
@@ -188,41 +251,102 @@
     </section>
 
     <section id="work" class="portfolio">
-        <div class="img-box i1">
+        <div class="img-box i1 reveal">
             <img src="https://images.unsplash.com/photo-1508801935509-223035ebe3af?auto=format&fit=crop&q=80&w=2070" alt="Teatro">
             <span>Teatro Nucleo - Scene Urbane</span>
         </div>
-        <div class="img-box i2">
+        <div class="img-box i2 reveal">
             <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=2070" alt="Magazine">
             <span>Filo Magazine Editorial</span>
         </div>
-        <div class="img-box i3">
+        <div class="img-box i3 reveal">
             <img src="https://images.unsplash.com/photo-1537832816519-689ad163238b?auto=format&fit=crop&q=80&w=1470" alt="Moda">
             <span>Rinascimento Campaign</span>
         </div>
-        <div class="img-box i4">
+        <div class="img-box i4 reveal">
             <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=1638" alt="Street">
             <span>Riaperture Photofestival</span>
         </div>
-        <div class="img-box i5">
+        <div class="img-box i5 reveal">
             <img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?auto=format&fit=crop&q=80&w=2037" alt="Cinema">
             <span>Cinematic Lighting Study</span>
         </div>
     </section>
 
     <section id="about" class="about">
-        <div class="about-img"></div>
-        <div class="about-text">
+        <div class="about-img reveal"></div>
+        <div class="about-text reveal">
             <h2>Dalla regia alla pellicola.</h2>
             <p>Nata a Ferrara nel 2001, ho coltivato il mio sguardo tra grafica e regia cinematografica. Il mio lavoro non è solo scattare una foto, ma costruire un frame che contenga una storia intera. Attiva professionalmente dal 2018, dal 2024 porto la mia visione nel settore commerciale e artistico.</p>
             
             <table class="collabs">
                 <tr><td>Riaperture Photofestival</td><td class="year">Ferrara</td></tr>
                 <tr><td>Teatro Nucleo / Teatro Off</td><td class="year">Scena</td></tr>
-                <li><td>Rinascimento / Scout</td><td class="year">Fashion</td></tr>
+                <tr><td>Rinascimento / Scout</td><td class="year">Fashion</td></tr>
                 <tr><td>Filo Magazine</td><td class="year">Editorial</td></tr>
                 <tr><td>Assistant to Max Salani</td><td class="year">Experience</td></tr>
             </table>
+        </div>
+    </section>
+
+    <section id="reviews" class="reviews-section">
+        <div class="reviews-header reveal">
+            <h2>Dicono di lei</h2>
+            <p>Media di 5.0 su oltre 70 recensioni Google</p>
+        </div>
+
+        <div class="reviews-grid">
+            
+            <div class="review-card reveal">
+                <div class="review-text">
+                    "Elena è una ragazza straordinaria, non solo per la sua bravura tecnica ma soprattutto per la sua sensibilità umana. Ha saputo ascoltarmi e ha colto più volte il mio lato migliore, valorizzandolo con naturalezza, senza forzature. Il cliente viene seguito dalla programmazione dell'intero shooting sino alla scelta degli scatti. Risultati che vanno oltre le aspettative."
+                </div>
+                <div class="review-author">
+                    <span class="author-name">Chiara Cazzola</span>
+                    <span class="author-title">Local Guide</span>
+                </div>
+            </div>
+
+            <div class="review-card reveal">
+                <div class="review-text">
+                    "Elena è un’artista di rara sensibilità, impeccabile e professionale sotto ogni aspetto. Ha saputo ascoltare, consigliare e guidare con grande attenzione quelli che erano i miei desideri sulla resa delle foto. Con delicatezza e profondità è riuscita a cogliere aspetti di me che nemmeno io conoscevo e che continuano a stupirmi."
+                </div>
+                <div class="review-author">
+                    <span class="author-name">Anna Ravazzolo</span>
+                    <span class="author-title">Local Guide</span>
+                </div>
+            </div>
+
+            <div class="review-card reveal">
+                <div class="review-text">
+                    "Elena è una giovane professionista ma davvero bravissima. Attenta ai dettagli, precisa e veloce nel lavoro. Riesce a mettere subito a proprio agio e a catturare momenti veri, senza forzature. Si vede che ci mette passione e cura in quello che fa. Super consigliata!"
+                </div>
+                <div class="review-author">
+                    <span class="author-name">Giovanna di Modugno</span>
+                    <span class="author-title">Local Guide</span>
+                </div>
+            </div>
+
+            <div class="review-card reveal">
+                <div class="review-text">
+                    "I miei primi scatti fotografici con Elena risalgono probabilmente ad una decina di anni fa, quando ancora non aveva uno studio o l'esperienza di oggi. Eppure, la sua passione e dedizione alla fotografia mi hanno colpita fin da subito. Da allora resta la mia fotografa di fiducia."
+                </div>
+                <div class="review-author">
+                    <span class="author-name">Alice Tralli</span>
+                    <span class="author-title">Cliente Storica</span>
+                </div>
+            </div>
+
+            <div class="review-card reveal">
+                <div class="review-text">
+                    "Elena è stata bravissima. Veloce, professionale e con grande gusto artistico! La consiglio vivamente! Non ve ne pentirete!"
+                </div>
+                <div class="review-author">
+                    <span class="author-name">Francesco Cervellati</span>
+                    <span class="author-title">Recensione</span>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -232,20 +356,20 @@
     </footer>
 
     <script>
-        // Effetto Fade-in allo scroll per le sezioni
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = "1";
-                    entry.target.style.transform = "translateY(0)";
+                    entry.target.classList.add('active');
                 }
             });
-        }, { threshold: 0.1 });
+        }, observerOptions);
 
-        document.querySelectorAll('.img-box, .about-text, .about-img').forEach(el => {
-            el.style.opacity = "0";
-            el.style.transform = "translateY(40px)";
-            el.style.transition = "1s cubic-bezier(0.25, 1, 0.5, 1)";
+        document.querySelectorAll('.reveal').forEach(el => {
             observer.observe(el);
         });
     </script>
