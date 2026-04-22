@@ -18,6 +18,8 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        html { scroll-behavior: smooth; }
+
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: var(--bg);
@@ -30,19 +32,37 @@
 
         /* --- NAVIGATION --- */
         nav {
-            padding: 30px 6%;
+            padding: 20px 6%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: fixed;
             width: 100%;
             z-index: 1000;
-            background: linear-gradient(to bottom, rgba(10,10,10,1), rgba(10,10,10,0));
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
         }
 
-        .logo { font-size: 1.2rem; letter-spacing: 5px; text-transform: uppercase; font-weight: 400; }
-        .nav-links a { color: var(--text); text-decoration: none; margin-left: 30px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
+        .logo { font-size: 1.1rem; letter-spacing: 4px; text-transform: uppercase; font-weight: 400; z-index: 1001; }
+        
+        .nav-links { display: flex; align-items: center; }
+        .nav-links a { color: var(--text); text-decoration: none; margin-left: 30px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
         .nav-links a:hover { color: var(--accent); }
+
+        /* Hamburger Menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: var(--text);
+            margin: 3px 0;
+            transition: 0.4s;
+        }
 
         /* --- HERO SECTION --- */
         .hero {
@@ -65,14 +85,15 @@
             position: relative;
             text-align: center;
             z-index: 10;
+            padding: 0 20px;
         }
 
-        .hero-title h1 { font-size: clamp(3rem, 12vw, 8rem); font-weight: 400; font-style: italic; }
-        .hero-title p { text-transform: uppercase; letter-spacing: 8px; font-size: 0.9rem; margin-top: 10px; color: var(--accent); }
+        .hero-title h1 { font-size: clamp(2.5rem, 10vw, 8rem); font-weight: 400; font-style: italic; }
+        .hero-title p { text-transform: uppercase; letter-spacing: 6px; font-size: 0.8rem; margin-top: 10px; color: var(--accent); }
 
         /* --- PORTFOLIO GRID --- */
         .portfolio {
-            padding: 100px 6%;
+            padding: 80px 6%;
             display: grid;
             grid-template-columns: repeat(12, 1fr);
             gap: 20px;
@@ -104,6 +125,9 @@
             letter-spacing: 2px;
             opacity: 0;
             transition: 0.4s;
+            background: rgba(0,0,0,0.5);
+            padding: 5px 10px;
+            backdrop-filter: blur(5px);
         }
 
         .img-box:hover span { opacity: 1; }
@@ -112,14 +136,14 @@
         .i2 { grid-column: span 4; height: 400px; }
         .i3 { grid-column: span 4; height: 500px; }
         .i4 { grid-column: span 4; height: 400px; }
-        .i5 { grid-column: span 4; height: 600px; margin-top: -200px;}
+        .i5 { grid-column: span 4; height: 600px; margin-top: -100px;}
 
         /* --- BIO SECTION --- */
         .about {
-            padding: 150px 10%;
+            padding: 100px 10%;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 100px;
+            gap: 60px;
             align-items: center;
         }
 
@@ -131,11 +155,11 @@
             background-clip: content-box;
         }
 
-        .about-text h2 { font-size: 3.5rem; margin-bottom: 20px; line-height: 1.1; }
+        .about-text h2 { font-size: clamp(2.5rem, 5vw, 3.5rem); margin-bottom: 20px; line-height: 1.1; }
         .about-text p { margin-bottom: 30px; font-weight: 300; font-size: 1.1rem; color: #ccc; }
 
         .collabs { width: 100%; border-collapse: collapse; margin-bottom: 40px; }
-        .collabs td { padding: 15px 0; border-bottom: 1px solid var(--gray); font-size: 0.9rem; }
+        .collabs td { padding: 15px 0; border-bottom: 1px solid var(--gray); font-size: 0.85rem; }
         .collabs tr:hover td { color: var(--accent); }
         .collabs .year { text-align: right; font-style: italic; opacity: 0.5; }
 
@@ -155,7 +179,7 @@
 
         /* --- REVIEWS SECTION --- */
         .reviews-section {
-            padding: 120px 6%;
+            padding: 100px 6%;
             background-color: var(--dark-gray);
         }
 
@@ -164,19 +188,18 @@
             margin-bottom: 60px;
         }
 
-        .reviews-header h2 { font-size: 3rem; margin-bottom: 10px; }
-        .reviews-header p { text-transform: uppercase; letter-spacing: 4px; font-size: 0.8rem; color: var(--accent); }
+        .reviews-header h2 { font-size: 2.8rem; margin-bottom: 10px; }
+        .reviews-header p { text-transform: uppercase; letter-spacing: 4px; font-size: 0.75rem; color: var(--accent); }
 
         .reviews-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            align-items: start;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
         }
 
         .review-card {
             background: #0a0a0a;
-            padding: 40px;
+            padding: 30px;
             border: 1px solid #1a1a1a;
             transition: 0.4s;
         }
@@ -186,27 +209,27 @@
         .review-text {
             font-family: 'Playfair Display', serif;
             font-style: italic;
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 30px;
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
             color: #e0e0e0;
         }
 
         .review-author { display: flex; flex-direction: column; }
-        .author-name { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 400; }
-        .author-title { font-size: 0.7rem; color: var(--accent); margin-top: 5px; text-transform: uppercase; }
+        .author-name { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; }
+        .author-title { font-size: 0.65rem; color: var(--accent); margin-top: 5px; text-transform: uppercase; }
 
         /* --- HORIZONTAL SCROLL GALLERY --- */
         .scroll-container {
-            padding: 100px 0;
+            padding: 80px 0;
             background-color: var(--bg);
         }
 
         .scroll-wrapper {
             display: flex;
             overflow-x: auto;
-            gap: 30px;
-            padding: 0 6% 40px 6%;
+            gap: 20px;
+            padding: 0 6% 30px 6%;
             scrollbar-width: none;
             scroll-snap-type: x mandatory;
         }
@@ -214,8 +237,8 @@
         .scroll-wrapper::-webkit-scrollbar { display: none; }
 
         .scroll-item {
-            flex: 0 0 450px;
-            height: 600px;
+            flex: 0 0 350px;
+            height: 500px;
             position: relative;
             background: var(--gray);
             overflow: hidden;
@@ -226,14 +249,13 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: 0.8s;
         }
 
         .caption-small {
             position: absolute;
             bottom: 20px;
             right: 20px;
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             color: rgba(255,255,255,0.8);
@@ -242,9 +264,9 @@
             backdrop-filter: blur(5px);
         }
 
-        /* --- FOOTER (Ripristinato) --- */
+        /* --- FOOTER --- */
         footer {
-            padding: 80px 6% 40px;
+            padding: 60px 6% 30px;
             text-align: center;
             background-color: #050505;
             border-top: 1px solid var(--gray);
@@ -252,36 +274,63 @@
 
         .footer-logo {
             font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             color: var(--accent);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             font-style: italic;
         }
 
         .footer-info {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             letter-spacing: 2px;
             color: #666;
             text-transform: uppercase;
+            line-height: 2;
         }
 
-        /* --- RESPONSIVE --- */
-        @media (max-width: 900px) {
+        /* --- RESPONSIVE ADJUSTMENTS --- */
+        @media (max-width: 1024px) {
+            .i5 { margin-top: 0; }
+            .portfolio { grid-template-columns: repeat(2, 1fr); }
+            .i1, .i2, .i3, .i4, .i5 { grid-column: span 1; height: 450px; }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 15px 6%; }
+            
+            .menu-toggle { display: flex; }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 70%;
+                background: var(--dark-gray);
+                flex-direction: column;
+                justify-content: center;
+                transition: 0.5s;
+                box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+            }
+
+            .nav-links.active { right: 0; }
+            .nav-links a { margin: 20px 0; font-size: 1rem; }
+
+            .about { grid-template-columns: 1fr; padding: 60px 6%; gap: 40px; }
+            .about-img { height: 400px; }
+            
             .portfolio { display: flex; flex-direction: column; }
-            .img-box { margin-bottom: 20px; height: 400px !important; width: 100%; }
-            .about { grid-template-columns: 1fr; padding: 80px 6%; }
-            .about-img { height: 450px; }
-            .about-text h2 { font-size: 2.5rem; }
-            .scroll-item { flex: 0 0 300px; height: 400px; }
-            .nav-links { display: none; } /* Per semplicità su mobile */
+            .img-box { height: 450px !important; }
+
+            .scroll-item { flex: 0 0 280px; height: 400px; }
         }
 
         /* ANIMAZIONI REVEAL */
         .reveal {
             opacity: 0;
-            transform: translateY(50px);
+            transform: translateY(30px);
             filter: blur(5px);
-            transition: all 1s cubic-bezier(0.25, 1, 0.5, 1);
+            transition: all 0.8s ease-out;
         }
 
         .reveal.active {
@@ -295,6 +344,11 @@
 
     <nav>
         <div class="logo">Elena Ragazzi</div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
         <div class="nav-links">
             <a href="#work">Lavori</a>
             <a href="#about">Bio</a>
@@ -311,24 +365,24 @@
 
     <section id="work" class="portfolio">
         <div class="img-box i1 reveal">
-            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/75f625184972485.655bc1ad53cd3.jpg" alt="Ritratti in esterna con Davide & Francesco">
-            <span>Ritratti in esterna con Davide & Francesco</span>
+            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/75f625184972485.655bc1ad53cd3.jpg" alt="Ritratti in esterna" loading="lazy">
+            <span>Outside Portraits</span>
         </div>
         <div class="img-box i2 reveal">
-            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/0d3137234755995.68c9a68fc8f7b.jpg" alt="Ritratti in studio con Alessia">
-            <span>Ritratti in studio con Alessia</span>
+            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/0d3137234755995.68c9a68fc8f7b.jpg" alt="Ritratti in studio" loading="lazy">
+            <span>Studio Session</span>
         </div>
         <div class="img-box i3 reveal">
-            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/b09e41201343939.6672d2aa02818.jpg" alt="Ritratti in studio con Lou">
-            <span>Ritratti in studio con Lou</span>
+            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/b09e41201343939.6672d2aa02818.jpg" alt="Ritratti Lou" loading="lazy">
+            <span>Creative Portraits</span>
         </div>
         <div class="img-box i4 reveal">
-            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/3a87c6214811863.675f2c94262d5.jpg" alt="Ritratti a domicilio con Francesco">
-            <span>Ritratti a domicilio</span>
+            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/3a87c6214811863.675f2c94262d5.jpg" alt="Ritratti a domicilio" loading="lazy">
+            <span>Home Stories</span>
         </div>
         <div class="img-box i5 reveal">
-            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/6abccd244415791.6996f2b36e389.jpg" alt="Servizio con Luuc Tribe">
-            <span>Servizio con Luuc Tribe</span>
+            <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/6abccd244415791.6996f2b36e389.jpg" alt="Luuc Tribe" loading="lazy">
+            <span>Commercial Work</span>
         </div>
     </section>
 
@@ -336,7 +390,7 @@
         <div class="about-img reveal"></div>
         <div class="about-text reveal">
             <h2>Chi sono.</h2>
-            <p>Nata a Ferrara nel 2001, ho coltivato il mio sguardo tra grafica e regia cinematografica. Il mio lavoro non è solo scattare una foto, ma costruire un frame che contenga una storia intera. Attiva professionalmente dal 2018, dal 2024 porto la mia visione nel settore commerciale e artistico.</p>
+            <p>Nata a Ferrara nel 2001, ho coltivato il mio sguardo tra grafica e regia cinematografica. Il mio lavoro non è solo scattare una foto, ma costruire un frame che contenga una storia intera. Attiva professionalmente dal 2018, dal 2024 porto la mia visione nel settore commerciale e artistico..</p>
             
             <table class="collabs">
                 <tr><td>Riaperture Photofestival</td><td class="year">Ferrara</td></tr>
@@ -346,14 +400,14 @@
                 <tr><td>Assistant to Max Salani</td><td class="year">Experience</td></tr>
             </table>
             
-            <a href="contatti.html" class="contact-btn">Contattami</a>
+            <a href="mailto:info@elenaragazzi.it" class="contact-btn">Contattami</a>
         </div>
     </section>
 
     <section id="reviews" class="reviews-section">
         <div class="reviews-header reveal">
             <h2>Feedback</h2>
-            <p>Media di 5.0 su oltre 70 recensioni Google</p>
+            <p>Eccellenza certificata dai clienti</p>
         </div>
 
         <div class="reviews-grid">
@@ -381,22 +435,10 @@
 
     <section class="scroll-container reveal">
         <div class="scroll-wrapper">
-            <div class="scroll-item">
-                <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/f8654e196800457.662647f4b315a.jpg" alt="1">
-                <div class="caption-small">Progetto brand gioielli</div>
-            </div>
-            <div class="scroll-item">
-                <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/192a71194262575.65f970ea7f79f.jpg" alt="2">
-                <div class="caption-small">Ritratto in interna con Martina / Studio</div>
-            </div>
-            <div class="scroll-item">
-                <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/90959f188335223.659abdf5854dc.jpg" alt="3">
-                <div class="caption-small">Street photography / Firenze</div>
-            </div>
-            <div class="scroll-item">
-                <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/c0d39e183915823.6548c5441cc31.jpg" alt="4">
-                <div class="caption-small">Ritratti a domicilio con Andrea</div>
-            </div>
+            <div class="scroll-item"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/f8654e196800457.662647f4b315a.jpg" alt="1"><div class="caption-small">Jewelry Brand</div></div>
+            <div class="scroll-item"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/192a71194262575.65f970ea7f79f.jpg" alt="2"><div class="caption-small">Studio / Martina</div></div>
+            <div class="scroll-item"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/90959f188335223.659abdf5854dc.jpg" alt="3"><div class="caption-small">Street / Firenze</div></div>
+            <div class="scroll-item"><img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/c0d39e183915823.6548c5441cc31.jpg" alt="4"><div class="caption-small">Indoor Stories</div></div>
         </div>
     </section>
 
@@ -409,7 +451,23 @@
     </footer>
 
     <script>
-        const observerOptions = { threshold: 0.15 };
+        // Hamburger Menu Logic
+        const menuToggle = document.getElementById('mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Chiudi menu quando si clicca un link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Intersection Observer for Reveal Animation
+        const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) { entry.target.classList.add('active'); }
