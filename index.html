@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elena Ragazzini | Visual Artist & Photographer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,400&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --txt: #ffffff;
+            --accent: #e63946;
+            --gray: #666;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--txt);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Navigazione */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 25px 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000;
+            background: linear-gradient(to bottom, rgba(10,10,10,1) 0%, rgba(10,10,10,0) 100%);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        .nav-links { font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+
+        /* Hero: Cinematic Style */
+        header {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+            position: relative;
+        }
+
+        .hero-content { z-index: 2; }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3.5rem, 10vw, 9rem);
+            line-height: 0.85;
+            font-style: italic;
+        }
+
+        .hero-meta {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        /* Sezione About Integrata */
+        .bio-section {
+            padding: 100px 10%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .bio-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .bio-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+
+        .experience-list {
+            list-style: none;
+            border-left: 1px solid #333;
+            padding-left: 30px;
+        }
+
+        .experience-list li {
+            margin-bottom: 15px;
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .experience-list b { color: var(--txt); display: block; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Galleria Lavori */
+        .work-grid {
+            padding: 0 5% 100px 5%;
+        }
+
+        .work-item {
+            margin-bottom: 15vh;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .work-item.visible { opacity: 1; transform: translateY(0); }
+
+        .img-box {
+            width: 100%;
+            max-height: 80vh;
+            overflow: hidden;
+            background: #111;
+        }
+
+        .work-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(1);
+            transition: 1.2s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+
+        .work-item:hover img { filter: grayscale(0); transform: scale(1.02); }
+
+        .work-label {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 15px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-style: italic;
+        }
+
+        .work-label span {
+            font-family: 'Inter', sans-serif;
+            font-style: normal;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: var(--gray);
+            letter-spacing: 2px;
+        }
+
+        footer {
+            padding: 50px 10%;
+            text-align: left;
+            border-top: 1px solid #1a1a1a;
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .bio-section { grid-template-columns: 1fr; }
+            h1 { font-size: 4rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">Elena Ragazzini</div>
+        <div class="nav-links">WORKS // ABOUT // 2026</div>
+    </nav>
+
+    <header>
+        <div class="hero-content">
+            <p class="hero-meta">Visual Storytelling / Ferrara / Est. 2001</p>
+            <h1>Frame<br>By Frame.</h1>
+        </div>
+    </header>
+
+    <section class="bio-section">
+        <div class="bio-text">
+            <h2>L'occhio dietro la scena.</h2>
+            <p>Dalla regia cinematografica alla fotografia artistica. Elena Ragazzini distilla il movimento del cinema in immagini statiche cariche di tensione drammatica.</p>
+            <p>Con un background tra grafica e teatro, il suo lavoro non è solo documentazione, ma interpretazione visiva del corpo e dello spazio.</p>
+        </div>
+        <ul class="experience-list">
+            <li><b>Editorial</b> Filo Magazine</li>
+            <li><b>Arts & Festivals</b> Riaperture Photofestival Ferrara</li>
+            <li><b>Theater</b> Teatro Nucleo (Scene Urbane), Teatro Off</li>
+            <li><b>Commercial</b> Rinascimento, Scout</li>
+            <li><b>Legacy</b> Assistant to Max Salani & Antonio De Masi</li>
+        </ul>
+    </section>
+
+    <main class="work-grid">
+        <div class="work-item">
+            <div class="img-box">
+                <img src="https://images.unsplash.com/photo-1533154683836-84ea7a0bc310?q=80&w=1400" alt="">
+            </div>
+            <div class="work-label">Ritratti d'Avanguardia <span>01 / Portfolio</span></div>
+        </div>
+
+        <div class="work-item">
+            <div class="img-box">
+                <img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?q=80&w=1400" alt="">
+            </div>
+            <div class="work-label">Teatro Nucleo <span>02 / Stage Photography</span></div>
+        </div>
+    </main>
+
+    <footer>
+        <p>ELENA RAGAZZINI © 2026 — P.IVA 021XXXXXXX</p>
+        <p style="margin-top: 10px;">Based in Ferrara, available worldwide.</p>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.work-item').forEach(item => observer.observe(item));
+    </script>
+</body>
+</html>
