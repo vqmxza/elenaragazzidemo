@@ -3,116 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elena Ragazzi | Photography</title>
+    <title>Elena Ragazzi | Visual Artist & Photographer</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
     <style>
-        /* CSS: IL DESIGN DEL SITO */
         :root {
-            --bg: #0e0e0e;
-            --text: #f4f4f4;
-            --accent: #a5a5a5;
+            --bg: #0a0a0a;
+            --text: #ffffff;
+            --accent: #c5a47e; /* Oro spento/Sabbia */
+            --gray: #2a2a2a;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Montserrat', sans-serif;
             background-color: var(--bg);
             color: var(--text);
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Navigazione */
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+        /* --- NAVIGATION --- */
         nav {
-            padding: 30px 5%;
+            padding: 40px 6%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: fixed;
             width: 100%;
-            z-index: 100;
-            background: rgba(14, 14, 14, 0.8);
-            backdrop-filter: blur(10px);
+            z-index: 1000;
+            background: linear-gradient(to bottom, rgba(10,10,10,1), rgba(10,10,10,0));
         }
 
-        .logo { font-weight: 300; letter-spacing: 4px; text-transform: uppercase; }
+        .logo { font-size: 1.2rem; letter-spacing: 5px; text-transform: uppercase; font-weight: 400; }
+        .nav-links a { color: var(--text); text-decoration: none; margin-left: 30px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent); }
 
-        /* Hero Section */
-        header {
+        /* --- HERO SECTION --- */
+        .hero {
             height: 100vh;
             display: flex;
-            flex-direction: column;
+            align-items: center;
             justify-content: center;
-            padding: 0 10%;
-            background: linear-gradient(to right, rgba(0,0,0,0.8), transparent);
+            position: relative;
+            background: url('https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&q=80&w=2071') no-repeat center center/cover;
         }
 
-        header h1 {
-            font-size: clamp(3rem, 10vw, 6rem);
-            font-weight: 200;
-            text-transform: uppercase;
-            line-height: 1;
+        .hero::before {
+            content: '';
+            position: absolute;
+            top:0; left:0; width:100%; height:100%;
+            background: rgba(0,0,0,0.4);
         }
 
-        header p {
-            font-size: 1.2rem;
-            color: var(--accent);
-            margin-top: 20px;
-            letter-spacing: 2px;
+        .hero-title {
+            position: relative;
+            text-align: center;
+            z-index: 10;
         }
 
-        /* Griglia Portfolio */
+        .hero-title h1 { font-size: clamp(3rem, 12vw, 8rem); font-weight: 400; font-style: italic; }
+        .hero-title p { text-transform: uppercase; letter-spacing: 8px; font-size: 0.9rem; margin-top: 10px; color: var(--accent); }
+
+        /* --- PORTFOLIO GRID --- */
         .portfolio {
+            padding: 100px 6%;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(12, 1fr);
             gap: 20px;
-            padding: 20px;
         }
 
-        .item {
-            height: 500px;
-            background: #1a1a1a;
-            display: flex;
-            align-items: flex-end;
-            padding: 30px;
-            transition: 0.5s ease;
+        .img-box {
             position: relative;
             overflow: hidden;
-            border: 1px solid #222;
+            background: var(--gray);
+            transition: 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        .item:hover { border-color: #555; }
+        .img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(40%);
+            transition: 1s ease;
+        }
 
-        .item h3 { font-weight: 300; z-index: 2; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 2px; }
+        .img-box:hover img { filter: grayscale(0%); transform: scale(1.05); }
 
-        /* Sezione Bio & Collaborazioni */
+        .img-box span {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0;
+            transition: 0.4s;
+        }
+
+        .img-box:hover span { opacity: 1; }
+
+        /* Layout Variabile (Masonry-like) */
+        .i1 { grid-column: span 8; height: 600px; }
+        .i2 { grid-column: span 4; height: 400px; }
+        .i3 { grid-column: span 4; height: 500px; margin-top: -200px; }
+        .i4 { grid-column: span 4; height: 400px; }
+        .i5 { grid-column: span 4; height: 600px; }
+
+        /* --- BIO SECTION --- */
         .about {
-            padding: 100px 10%;
+            padding: 150px 10%;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 80px;
+            gap: 100px;
+            align-items: center;
         }
 
-        .about h2 { font-size: 2.5rem; font-weight: 200; margin-bottom: 30px; }
-
-        .collab-list { list-style: none; margin-top: 40px; }
-        .collab-list li {
-            padding: 15px 0;
-            border-bottom: 1px solid #333;
-            display: flex;
-            justify-content: space-between;
-            color: var(--accent);
+        .about-img {
+            height: 600px;
+            background: url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=1964') center/cover;
+            border: 1px solid var(--accent);
+            padding: 15px;
+            background-clip: content-box;
         }
 
+        .about-text h2 { font-size: 3.5rem; margin-bottom: 20px; line-height: 1.1; }
+        .about-text p { margin-bottom: 30px; font-weight: 300; font-size: 1.1rem; color: #ccc; }
+
+        /* --- COLLABS TABLE --- */
+        .collabs { width: 100%; border-collapse: collapse; margin-top: 40px; }
+        .collabs td { padding: 15px 0; border-bottom: 1px solid var(--gray); font-size: 0.9rem; }
+        .collabs tr:hover td { color: var(--accent); }
+        .collabs .year { text-align: right; font-style: italic; opacity: 0.5; }
+
+        /* --- FOOTER --- */
         footer {
-            padding: 50px 10%;
+            padding: 100px 6% 40px;
             text-align: center;
-            font-size: 0.8rem;
-            color: #555;
-            border-top: 1px solid #222;
+            border-top: 1px solid var(--gray);
         }
 
-        @media (max-width: 768px) {
+        .contact-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 0.8rem;
+            transition: 0.4s;
+            margin-bottom: 60px;
+        }
+
+        .contact-btn:hover { background: var(--accent); color: var(--bg); }
+
+        @media (max-width: 900px) {
+            .portfolio { display: block; }
+            .img-box { margin-bottom: 20px; height: 400px !important; width: 100%; }
             .about { grid-template-columns: 1fr; }
         }
     </style>
@@ -121,53 +173,80 @@
 
     <nav>
         <div class="logo">Elena Ragazzi</div>
-        <div class="contact-link">2001 / Ferrara</div>
+        <div class="nav-links">
+            <a href="#work">Lavori</a>
+            <a href="#about">Bio</a>
+            <a href="#contact">Contatti</a>
+        </div>
     </nav>
 
-    <header>
-        <h1>Visione <br> Cinematografica</h1>
-        <p>Fotografa professionista dal 2018. Basata a Ferrara.</p>
-    </header>
-
-    <section class="portfolio">
-        <div class="item"><h3>Photofestival Riaperture</h3></div>
-        <div class="item"><h3>Teatro Nucleo</h3></div>
-        <div class="item"><h3>Filo Magazine</h3></div>
-        <div class="item"><h3>Editorial Fashion</h3></div>
-    </section>
-
-    <section class="about">
-        <div>
-            <h2>L'approccio</h2>
-            <p>Con un background che spazia dalla grafica alla regia, ogni scatto è concepito come un fotogramma di un film. Dal 2024 opero ufficialmente con partita IVA, portando la mia visione artistica nel mondo professionale.</p>
-        </div>
-        <div>
-            <h2>Esperienze</h2>
-            <ul class="collab-list">
-                <li><span>Teatro Off</span> <span>2024</span></li>
-                <li><span>Brand Rinascimento</span> <span>Fashion</span></li>
-                <li><span>Filo Magazine</span> <span>Press</span></li>
-                <li><span>Scout</span> <span>Campaign</span></li>
-                <li><span>Assistant to Max Salani</span> <span>Mentor</span></li>
-            </ul>
+    <section class="hero">
+        <div class="hero-title">
+            <p>Visual Storyteller</p>
+            <h1>Elena Ragazzi</h1>
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2026 Elena Ragazzi — Fotografa — P.IVA 2024</p>
+    <section id="work" class="portfolio">
+        <div class="img-box i1">
+            <img src="https://images.unsplash.com/photo-1508801935509-223035ebe3af?auto=format&fit=crop&q=80&w=2070" alt="Teatro">
+            <span>Teatro Nucleo - Scene Urbane</span>
+        </div>
+        <div class="img-box i2">
+            <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=2070" alt="Magazine">
+            <span>Filo Magazine Editorial</span>
+        </div>
+        <div class="img-box i3">
+            <img src="https://images.unsplash.com/photo-1537832816519-689ad163238b?auto=format&fit=crop&q=80&w=1470" alt="Moda">
+            <span>Rinascimento Campaign</span>
+        </div>
+        <div class="img-box i4">
+            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&q=80&w=1638" alt="Street">
+            <span>Riaperture Photofestival</span>
+        </div>
+        <div class="img-box i5">
+            <img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?auto=format&fit=crop&q=80&w=2037" alt="Cinema">
+            <span>Cinematic Lighting Study</span>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="about-img"></div>
+        <div class="about-text">
+            <h2>Dalla regia alla pellicola.</h2>
+            <p>Nata a Ferrara nel 2001, ho coltivato il mio sguardo tra grafica e regia cinematografica. Il mio lavoro non è solo scattare una foto, ma costruire un frame che contenga una storia intera. Attiva professionalmente dal 2018, dal 2024 porto la mia visione nel settore commerciale e artistico.</p>
+            
+            <table class="collabs">
+                <tr><td>Riaperture Photofestival</td><td class="year">Ferrara</td></tr>
+                <tr><td>Teatro Nucleo / Teatro Off</td><td class="year">Scena</td></tr>
+                <li><td>Rinascimento / Scout</td><td class="year">Fashion</td></tr>
+                <tr><td>Filo Magazine</td><td class="year">Editorial</td></tr>
+                <tr><td>Assistant to Max Salani</td><td class="year">Experience</td></tr>
+            </table>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <a href="mailto:info@elenaragazzi.it" class="contact-btn">Lavoriamo insieme</a>
+        <p>© 2026 ELENA RAGAZZI — P.IVA 021XXXXXXXX — FERRARA</p>
     </footer>
 
     <script>
-        // JS: PICCOLO EFFETTO DI APPARIZIONE
-        window.addEventListener('scroll', () => {
-            const items = document.querySelectorAll('.item');
-            items.forEach(item => {
-                const speed = 0.1;
-                const rect = item.getBoundingClientRect();
-                if(rect.top < window.innerHeight) {
-                    item.style.opacity = 1;
+        // Effetto Fade-in allo scroll per le sezioni
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
                 }
             });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.img-box, .about-text, .about-img').forEach(el => {
+            el.style.opacity = "0";
+            el.style.transform = "translateY(40px)";
+            el.style.transition = "1s cubic-bezier(0.25, 1, 0.5, 1)";
+            observer.observe(el);
         });
     </script>
 </body>
