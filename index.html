@@ -3,200 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elena Ragazzini | Visual Artist</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,400&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #050505;
-            --txt: #ffffff;
-            --accent: #e63946;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; } /* Cursor personalizzato */
-
-        body {
-            background-color: var(--bg);
-            color: var(--txt);
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-        }
-
-        /* Effetto Grana Cinema */
-        body::after {
-            content: "";
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/76/1k_ext_texture.png');
-            opacity: 0.04; pointer-events: none; z-index: 9999;
-        }
-
-        /* Cursor Personalizzato */
-        #cursor {
-            position: fixed; width: 40px; height: 40px;
-            border: 1px solid rgba(255,255,255,0.5);
-            border-radius: 50%; pointer-events: none;
-            transform: translate(-50%, -50%); z-index: 10000;
-            transition: transform 0.1s ease, background 0.3s ease;
-        }
-
-        /* Navigazione */
-        nav {
-            position: fixed; top: 0; width: 100%; padding: 40px 5%;
-            display: flex; justify-content: space-between; z-index: 1000;
-        }
-        .logo { font-family: 'Playfair Display'; font-weight: 900; font-size: 1.2rem; letter-spacing: 2px; }
-
-        /* Sezioni */
-        section { min-height: 100vh; padding: 100px 10%; display: flex; flex-direction: column; justify-content: center; }
-
-        /* Hero con animazione JS */
-        .hero h1 {
-            font-family: 'Playfair Display';
-            font-size: clamp(3rem, 15vw, 12rem);
-            line-height: 0.8;
-            font-style: italic;
-            perspective: 1000px;
-        }
-
-        .hero h1 span { display: inline-block; opacity: 0; transform: rotateX(-90deg); transition: all 1s ease; }
-        .hero h1 span.reveal { opacity: 1; transform: rotateX(0deg); }
-
-        /* Bio Grid */
-        .bio-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; }
-        .bio-text h2 { font-family: 'Playfair Display'; font-size: 3.5rem; margin-bottom: 30px; }
-        .bio-text p { font-size: 1.2rem; color: #888; margin-bottom: 20px; }
-
-        .experience-list { list-style: none; }
-        .experience-list li { 
-            padding: 20px 0; border-bottom: 1px solid #222; 
-            display: flex; justify-content: space-between; opacity: 0; transform: translateX(20px); transition: 0.6s;
-        }
-        .experience-list li.visible { opacity: 1; transform: translateX(0); }
-        .experience-list b { color: var(--accent); font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; }
-
-        /* Portfolio Parallax */
-        .project { margin-bottom: 20vh; position: relative; }
-        .img-container {
-            width: 100%; height: 80vh; overflow: hidden;
-            position: relative;
-        }
-        .img-container img {
-            width: 100%; height: 120%; /* Più alta per il parallax */
-            object-fit: cover; position: absolute; top: -10%;
-            filter: grayscale(1); transition: filter 0.8s ease;
-        }
-        .project:hover img { filter: grayscale(0); }
-        .project-title { 
-            position: absolute; bottom: -30px; right: 0;
-            font-family: 'Playfair Display'; font-size: 5vw; font-style: italic;
-            mix-blend-mode: difference;
-        }
-
-        /* Footer */
-        footer { padding: 100px 10%; text-align: center; }
-        .contact-btn {
-            font-family: 'Playfair Display'; font-size: clamp(2rem, 8vw, 6rem);
-            text-decoration: none; color: #fff; transition: 0.4s;
-        }
-        .contact-btn:hover { color: var(--accent); padding-left: 30px; }
-
-        @media (max-width: 900px) {
-            .bio-grid { grid-template-columns: 1fr; }
-            * { cursor: auto; }
-            #cursor { display: none; }
-        }
-    </style>
+    <title>Elena Ragazzi | Photography & Visual Arts</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 </head>
 <body>
 
-    <div id="cursor"></div>
-
     <nav>
-        <div class="logo">ELENA RAGAZZINI</div>
-        <div style="font-size: 0.7rem; letter-spacing: 3px;">FERRARA // 2026</div>
+        <div class="logo">ELENA RAGAZZI</div>
+        <ul class="nav-links">
+            <li><a href="#gallery">Portfolio</a></li>
+            <li><a href="#about">Bio</a></li>
+            <li><a href="#contact">Contatti</a></li>
+        </ul>
     </nav>
 
-    <section class="hero">
-        <h1 id="hero-title"><span>Sguardo</span><br><span>D'Autore.</span></h1>
-    </section>
-
-    <section class="bio-grid">
-        <div class="bio-text">
-            <h2>Dalla Regia<br>alla Scena.</h2>
-            <p>Classe 2001. Elena Ragazzini distilla la sua esperienza nel cinema e nella grafica in composizioni statiche ad alto impatto emotivo.</p>
-            <p>Dal 2024 opera come professionista indipendente, collaborando con teatri, riviste editoriali e brand lifestyle.</p>
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Catturare l'impermanenza.</h1>
+            <p>Fotografia editoriale, di scena e direzione creativa.</p>
         </div>
-        <ul class="experience-list" id="exp-list">
-            <li><b>Editorial</b> <span>Filo Magazine</span></li>
-            <li><b>Theater</b> <span>Teatro Nucleo</span></li>
-            <li><b>Brand</b> <span>Rinascimento / Scout</span></li>
-            <li><b>Art</b> <span>Riaperture Festival</span></li>
-        </ul>
+    </header>
+
+    <section id="gallery" class="gallery">
+        <div class="grid-item large" style="background-image: url('https://via.placeholder.com/800x1000')"></div>
+        <div class="grid-item" style="background-image: url('https://via.placeholder.com/600x400')"></div>
+        <div class="grid-item" style="background-image: url('https://via.placeholder.com/600x400')"></div>
     </section>
 
-    <section>
-        <div class="project">
-            <div class="img-container">
-                <img src="https://images.unsplash.com/photo-1533154683836-84ea7a0bc310?q=80&w=1200" class="parallax-img">
+    <section id="about" class="about">
+        <div class="container">
+            <h2>Elena Ragazzi <small>(b. 2001)</small></h2>
+            <p class="bio-text">
+                Nata a Ferrara, intreccio la regia cinematografica con la fotografia per creare narrazioni visive sospese nel tempo. Dal 2018 collaboro con realtà editoriali e teatrali.
+            </p>
+            
+            <div class="experience">
+                <h3>Collaborazioni Selezionate</h3>
+                <ul>
+                    <li>Photofestival Riaperture</li>
+                    <li>Teatro Nucleo (Scene Urbane)</li>
+                    <li>Filo Magazine</li>
+                    <li>Teatro Off</li>
+                    <li>Brand: Rinascimento, Scout</li>
+                </ul>
             </div>
-            <h3 class="project-title">Metamorfosi</h3>
-        </div>
-
-        <div class="project">
-            <div class="img-container">
-                <img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?q=80&w=1200" class="parallax-img">
-            </div>
-            <h3 class="project-title">Anima di Scena</h3>
         </div>
     </section>
 
-    <footer>
-        <a href="mailto:info@elenaragazzini.it" class="contact-btn">info@elenaragazzini.it</a>
-        <p style="margin-top: 40px; font-size: 0.6rem; color: #444; letter-spacing: 2px;">P.IVA 021XXXXXXX // BASED IN ITALY</p>
+    <footer id="contact">
+        <p>© 2026 Elena Ragazzi — P.IVA 2024</p>
+        <a href="mailto:info@elenaragazzi.it">Invia una mail</a>
     </footer>
 
-    <script>
-        // 1. Gestione Cursor
-        const cursor = document.getElementById('cursor');
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-
-        // 2. Animazione Hero all'avvio
-        window.addEventListener('DOMContentLoaded', () => {
-            const spans = document.querySelectorAll('#hero-title span');
-            spans.forEach((span, i) => {
-                setTimeout(() => span.classList.add('reveal'), 200 * i);
-            });
-        });
-
-        // 3. Scroll Effects (Parallax e Reveal)
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            
-            // Parallax immagini
-            const images = document.querySelectorAll('.parallax-img');
-            images.forEach(img => {
-                const speed = 0.15;
-                const top = img.parentElement.getBoundingClientRect().top;
-                img.style.transform = `translateY(${-top * speed}px)`;
-            });
-
-            // Reveal lista esperienze
-            const listItems = document.querySelectorAll('.experience-list li');
-            listItems.forEach(item => {
-                const rect = item.getBoundingClientRect();
-                if(rect.top < window.innerHeight - 100) {
-                    item.classList.add('visible');
-                }
-            });
-        });
-
-        // Ingrandisci cursor su link
-        document.querySelectorAll('a, .img-container').forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.style.transform = 'translate(-50%, -50%) scale(2)');
-            el.addEventListener('mouseleave', () => cursor.style.transform = 'translate(-50%, -50%) scale(1)');
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
