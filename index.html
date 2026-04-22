@@ -3,161 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elena Ragazzini | Visual Artist</title>
+    <title>Elena Ragazzini | Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,400&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg: #0a0a0a;
-            --txt: #ffffff;
-            --accent: #e63946;
-            --gray: #888;
-            --step: 1.2s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
+        /* RESET & BASE */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            background-color: var(--bg); 
-            color: var(--txt); 
-            font-family: 'Inter', sans-serif; 
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
+        body { background: #0a0a0a; color: #fff; font-family: 'Inter', sans-serif; line-height: 1.6; }
 
-        /* Navigazione */
+        /* NAV */
         nav {
-            position: fixed;
-            top: 0; width: 100%;
-            padding: 30px 5%;
-            display: flex; justify-content: space-between; align-items: center;
-            z-index: 1000;
-            mix-blend-mode: difference;
+            position: fixed; top: 0; width: 100%; padding: 30px 5%;
+            display: flex; justify-content: space-between; z-index: 1000;
+            background: linear-gradient(to bottom, rgba(10,10,10,1), transparent);
         }
+        .logo { font-family: 'Playfair Display'; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; }
 
-        .logo { font-family: 'Playfair Display'; font-weight: 900; font-size: 1.3rem; cursor: pointer; }
-        .nav-links a { 
-            color: var(--txt); text-decoration: none; font-size: 0.7rem; 
-            font-weight: 700; letter-spacing: 2px; margin-left: 30px; 
-            text-transform: uppercase; transition: 0.3s;
+        /* SEZIONI */
+        section { padding: 100px 10%; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+
+        /* HERO - L'IMPATTO */
+        .hero h1 { font-family: 'Playfair Display'; font-size: clamp(3rem, 10vw, 8rem); line-height: 0.9; font-style: italic; }
+        .hero p { color: #666; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 20px; }
+
+        /* BIO - LA STORIA (Basata sui tuoi dati) */
+        .bio { background: #0f0f0f; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+        .bio h2 { font-family: 'Playfair Display'; font-size: 3rem; margin-bottom: 20px; }
+        .experience { list-style: none; border-left: 1px solid #333; padding-left: 20px; }
+        .experience li { margin-bottom: 15px; font-size: 0.9rem; color: #888; }
+        .experience b { color: #fff; display: block; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 1px; }
+
+        /* PORTFOLIO - I LAVORI */
+        .portfolio-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px; 
+            margin-top: 50px; 
         }
-        .nav-links a:hover { color: var(--gray); }
+        .work-item { position: relative; aspect-ratio: 3/4; overflow: hidden; background: #1a1a1a; }
+        .work-item img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); transition: 0.5s; }
+        .work-item:hover img { filter: grayscale(0); transform: scale(1.05); }
+        .work-label { padding: 15px 0; font-family: 'Playfair Display'; font-size: 1.2rem; border-bottom: 1px solid #222; }
 
-        /* Struttura Pagine */
-        section { min-height: 100vh; padding: 120px 10% 80px 10%; display: none; }
-        section.active { display: block; animation: fadeIn 1s var(--step); }
+        /* CONTACT */
+        .contact { text-align: center; height: 60vh; }
+        .contact a { font-family: 'Playfair Display'; font-size: clamp(2rem, 5vw, 4rem); color: #fff; text-decoration: none; border-bottom: 2px solid #fff; }
+        .contact a:hover { font-style: italic; color: #888; border-color: #888; }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* HOME */
-        #home { display: flex; flex-direction: column; justify-content: center; text-align: left; }
-        .hero-title { font-family: 'Playfair Display'; font-size: clamp(3.5rem, 12vw, 10rem); line-height: 0.85; font-style: italic; }
-        .hero-sub { margin-top: 30px; font-size: 1rem; letter-spacing: 5px; color: var(--gray); text-transform: uppercase; }
-
-        /* PORTFOLIO GRID */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; margin-top: 50px; }
-        .work-card { position: relative; overflow: hidden; background: #111; aspect-ratio: 4/5; cursor: pointer; }
-        .work-card img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1); transition: var(--step); }
-        .work-card:hover img { filter: grayscale(0); transform: scale(1.05); }
-        .work-info { position: absolute; bottom: 20px; left: 20px; transition: 0.4s; }
-        .work-card h3 { font-family: 'Playfair Display'; font-style: italic; font-size: 1.8rem; }
-
-        /* BIO */
-        .bio-container { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
-        .bio-content h2 { font-family: 'Playfair Display'; font-size: 3rem; margin-bottom: 30px; }
-        .bio-content p { font-size: 1.1rem; line-height: 1.8; color: #bbb; margin-bottom: 20px; }
-        .cv-box { border-top: 1px solid #333; padding-top: 30px; }
-        .cv-item { margin-bottom: 20px; }
-        .cv-item span { display: block; font-size: 0.7rem; color: var(--gray); text-transform: uppercase; margin-bottom: 5px; }
-        .cv-item p { font-weight: 600; font-size: 0.9rem; margin: 0; color: #fff; }
-
-        /* CONTACTS */
-        #contacts { text-align: center; display: flex; flex-direction: column; justify-content: center; }
-        .contact-link { font-family: 'Playfair Display'; font-size: clamp(2rem, 8vw, 6rem); color: var(--txt); text-decoration: none; transition: 0.3s; }
-        .contact-link:hover { font-style: italic; opacity: 0.5; }
-        .socials { margin-top: 50px; }
-        .socials a { color: var(--gray); margin: 0 15px; text-decoration: none; font-size: 0.9rem; }
-
-        /* Responsive */
+        /* RESPONSIVE */
         @media (max-width: 800px) {
-            .bio-container { grid-template-columns: 1fr; }
-            .nav-links { display: none; } /* Per brevità demo mobile */
-            section { padding: 100px 5% 40px 5%; }
+            .bio { grid-template-columns: 1fr; padding: 80px 5%; }
+            section { padding: 60px 5%; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <div class="logo" onclick="showPage('home')">Elena Ragazzini</div>
-        <div class="nav-links">
-            <a href="#" onclick="showPage('portfolio')">Portfolio</a>
-            <a href="#" onclick="showPage('bio')">Bio</a>
-            <a href="#" onclick="showPage('contacts')">Contatti</a>
-        </div>
+        <div class="logo">Elena Ragazzini</div>
+        <div style="font-size: 0.7rem; letter-spacing: 2px;">EST. 2001 // FERRARA</div>
     </nav>
 
-    <section id="home" class="active">
-        <p class="hero-sub">Visual Artist & Cinematographer</p>
-        <h1 class="hero-title">Estetica<br>del Reale.</h1>
+    <section class="hero">
+        <p>Visual Artist & Cinematographer</p>
+        <h1>Dalla Regia<br>allo Scatto.</h1>
     </section>
 
-    <section id="portfolio">
-        <h1 class="hero-title">Opere.</h1>
-        <div class="grid">
-            <div class="work-card">
-                <img src="https://images.unsplash.com/photo-1533154683836-84ea7a0bc310?q=80&w=800" alt="">
-                <div class="work-info"><h3>Teatro Nucleo</h3></div>
+    <section class="bio">
+        <div>
+            <h2>Chi è Elena.</h2>
+            <p style="color: #bbb; font-size: 1.1rem;">Fotografa italiana con un background in grafica e regia cinematografica. Attiva dal 2018, fonde la narrazione visiva del cinema con la sintesi estetica dello scatto fotografico.</p>
+            <p style="color: #bbb; margin-top: 20px;">Professionista con P.IVA dal 2024, specializzata in ritrattistica concettuale e fotografia di scena.</p>
+        </div>
+        <ul class="experience">
+            <li><b>Editorial</b> Fotografa per Filo Magazine</li>
+            <li><b>Arts</b> Riaperture Photofestival Ferrara</li>
+            <li><b>Theater</b> Teatro Nucleo & Teatro Off</li>
+            <li><b>Brands</b> Rinascimento, Scout</li>
+            <li><b>Mentorship</b> Assistant to Max Salani & Antonio De Masi</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 style="font-family: 'Playfair Display'; font-size: 3rem; margin-bottom: 40px;">Progetti Selezionati</h2>
+        <div class="portfolio-grid">
+            <div class="work-item-box">
+                <div class="work-item"><img src="https://images.unsplash.com/photo-1533154683836-84ea7a0bc310?q=80&w=800"></div>
+                <div class="work-label">Teatro Nucleo // Scene Urbane</div>
             </div>
-            <div class="work-card">
-                <img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?q=80&w=800" alt="">
-                <div class="work-info"><h3>Riaperture</h3></div>
+            <div class="work-item-box">
+                <div class="work-item"><img src="https://images.unsplash.com/photo-1509248961158-e54f6934749c?q=80&w=800"></div>
+                <div class="work-label">Ritratti Editoriali // Filo Mag</div>
             </div>
-            <div class="work-card">
-                <img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?q=80&w=800" alt="">
-                <div class="work-info"><h3>Filo Magazine</h3></div>
-            </div>
-            <div class="work-card">
-                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=800" alt="">
-                <div class="work-info"><h3>Cinematic Body</h3></div>
+            <div class="work-item-box">
+                <div class="work-item"><img src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?q=80&w=800"></div>
+                <div class="work-label">Riaperture Festival // Ferrara</div>
             </div>
         </div>
     </section>
 
-    <section id="bio">
-        <div class="bio-container">
-            <div class="bio-content">
-                <h2>Identità Visiva.</h2>
-                <p>Nata a Ferrara nel 2001, Elena Ragazzini intreccia la precisione della grafica con la potenza narrativa della regia cinematografica.</p>
-                <p>Dal 2018 esplora il confine tra documentazione e arte, collaborando con istituzioni teatrali e testate editoriali.</p>
-            </div>
-            <div class="cv-box">
-                <div class="cv-item"><span>Selected Clients</span><p>Rinascimento, Scout, Filo Mag</p></div>
-                <div class="cv-item"><span>Exhibitions</span><p>Riaperture Photofestival (2022-2024)</p></div>
-                <div class="cv-item"><span>Training</span><p>Assistant to Max Salani / Antonio De Masi</p></div>
-                <div class="cv-item"><span>Status</span><p>Professional P.IVA since 2024</p></div>
-            </div>
-        </div>
+    <section class="contact">
+        <p style="margin-bottom: 30px; color: #666; text-transform: uppercase; letter-spacing: 3px;">Progetti / Collaborazioni / Booking</p>
+        <a href="mailto:info@elenaragazzini.it">info@elenaragazzini.it</a>
     </section>
 
-    <section id="contacts">
-        <p class="hero-sub" style="margin-bottom: 20px;">Parliamo del tuo progetto</p>
-        <a href="mailto:info@elenaragazzini.it" class="contact-link">info@elenaragazzini.it</a>
-        <div class="socials">
-            <a href="#">INSTAGRAM</a> / <a href="#">LINKEDIN</a> / <a href="#">BEHANCE</a>
-        </div>
-    </section>
+    <footer style="padding: 40px; text-align: center; font-size: 0.7rem; color: #444;">
+        © 2026 ELENA RAGAZZINI — P.IVA 021XXXXXXX — FERRARA, ITALY
+    </footer>
 
-    <script>
-        function showPage(pageId) {
-            // Nasconde tutte le sezioni
-            document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-            // Mostra quella selezionata
-            document.getElementById(pageId).classList.add('active');
-            // Torna su in automatico
-            window.scrollTo(0,0);
-        }
-    </script>
 </body>
 </html>
